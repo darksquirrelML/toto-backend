@@ -13,8 +13,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.multioutput import MultiOutputClassifier
 
 # ─── Config ───────────────────────────────────────────────────────────────────
-SUPABASE_URL = "https://YOUR-PROJECT-ID.supabase.co"
-SUPABASE_KEY = "YOUR-ANON-KEY"
+
+import os
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
+
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = FastAPI()
