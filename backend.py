@@ -107,9 +107,11 @@ def do_training(params):
     try:
         training_progress["status"] = "loading"
         training_progress["message"] = "Loading draws from Supabase..."
-        print("Loading draws...")
+        print("Loading draws...", flush=True)
 
         draws = load_draws()
+        print(f"Loaded {len(draws)} draws", flush=True)
+        
         if not draws:
             training_progress["status"] = "error"
             training_progress["message"] = "No draws found"
@@ -143,10 +145,13 @@ def do_training(params):
         models = []
         for i in range(49):
             clf = RandomForestClassifier(
-                n_estimators=params.epochs,
+                n_estimators=50,
                 random_state=42,
-                n_jobs=-1
+                n_jobs=1,
+                max_depth=10,
+                min_samples_split=5
             )
+            
             clf.fit(sequences, targets[:, i])
             models.append(clf)
 
