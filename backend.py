@@ -202,9 +202,19 @@ def train(params: TrainParams):
     return {"status": "started", "message": "Training started"}
 
 # ─── Progress endpoint ────────────────────────────────────────────────────────
+
 @app.get("/train/progress")
 def get_progress():
     return training_progress
+
+@app.get("/train/reset")
+def reset_training():
+    global training_progress
+    training_progress = {
+        "step": 0, "total": 0, "percent": 0,
+        "status": "idle", "message": ""
+    }
+    return {"status": "ok", "message": "Training reset"}
 
 # ─── Predict params ───────────────────────────────────────────────────────────
 class PredictParams(BaseModel):
