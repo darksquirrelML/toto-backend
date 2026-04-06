@@ -1,7 +1,7 @@
 fastapi
 uvicorn
-tensorflow
 requests
 beautifulsoup4
 supabase
 numpy
+scikit-learn
