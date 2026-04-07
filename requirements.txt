@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-tensorflow
+tensorflow==2.15.0
 requests
 beautifulsoup4
 supabase
